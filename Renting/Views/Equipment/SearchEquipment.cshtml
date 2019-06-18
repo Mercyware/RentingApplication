@@ -1,0 +1,48 @@
+﻿@model  Renting.Interface.IEquipmentViewModel
+
+<section id="display-header">
+    <h3 class="text-center my-2"> @ViewBag.Title </h3>
+    <hr/>
+</section>
+
+<section id="jobs">
+    <div class="container">
+
+
+
+
+        @if (Model.Equipments.Any())
+        {
+            <div class="row mb-4">
+
+                @foreach (var equipment in Model.Equipments)
+                {
+                    <div class="col-6 my-3">
+
+                        <div class="card">
+                            <div class="card-body">
+                                @using (Html.BeginForm("AddToCart", "Equipment", FormMethod.Post))
+                                {
+                                    @EquipmentTypeDisplayHelper.Equipment(equipment)
+                                }
+                            </div>
+                        </div>
+
+
+                    </div>
+                }
+
+
+
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger"><span class="fa fa-exclamation-circle"></span> No equipment found, Please try again</div>
+        }
+
+
+
+    </div>
+
+</section>

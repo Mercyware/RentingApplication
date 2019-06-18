@@ -1,0 +1,71 @@
+﻿@using Microsoft.Ajax.Utilities
+@using Renting.Interface
+
+@helper Equipment(IEquipmentModel equipment)
+{
+    <input value="@equipment.EquipmentID" name="equipmentID" type="hidden"/>
+    <input value="@equipment.EquipmentName" name="EquipmentName" type="hidden"/>
+    <input value="@equipment.EquipmentType" name="EquipmentType" type="hidden"/>
+
+    <h4 class="text-dark-blue">@equipment.EquipmentName</h4>
+
+    <p class="mb-1 text-black">
+        <span class="fa fa-building "></span>
+
+        @if (equipment.EquipmentType == "H")
+        {
+            <span>Heavy Equipment</span>
+        }
+        else if (equipment.EquipmentType == "R")
+        {
+            <span>Regular Equipment</span>
+        }
+        else if (equipment.EquipmentType == "S")
+
+        {
+            <span>Specialized Equipment</span>
+        }
+        else
+        {
+            <span>Unspecified Equipment Type</span>
+        }
+
+    </p>
+
+    <div class="form-row">
+        <div class=" col-md-8">
+            <input type="number" class="form-control form-control-md" name="DaysOfHire" required
+                   placeholder="Number of Days">
+        </div>
+
+
+        <div class=" col-md-4">
+            <button type="submit" class="btn btn-block btn-md btn-primary">
+                <span class="fa fa-plus"></span> Add to Cart
+            </button>
+        </div>
+    </div>
+}
+
+</div>
+</div>
+
+
+</div>
+}
+
+
+
+</div>
+}
+else
+{
+<div class="alert alert-danger"><span class="fa fa-exclamation-circle"></span> No equipment found, Please try again</div>
+}
+
+
+
+</div>
+
+</section>
+}

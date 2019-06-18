@@ -1,0 +1,6 @@
+id| name| type
+1| Caterpillar bulldozer | H
+2| KamAZ truck| R
+3| Komatsu crane| H
+4| Volvo steamroller| R
+5| Bosch jackhammer| S

@@ -1,0 +1,29 @@
+[
+    {
+        "EquipmentID": 1,
+        "EquipmentName": "Caterpillar bulldozer",
+	"EquipmentType":"H"
+    },
+   {
+        "EquipmentID": 2,
+        "EquipmentName": "KamAZ truck",
+	"EquipmentType":"R"
+    },
+    
+    {
+        "EquipmentID": 3,
+        "EquipmentName": "Komatsu crane",
+	"EquipmentType":"H"
+    },
+{
+        "EquipmentID": 4,
+        "EquipmentName": "Volvo steamroller",
+	"EquipmentType":"R"
+    },
+{
+        "EquipmentID": 5,
+        "EquipmentName": "Bosch jackhammer",
+	"EquipmentType":"S"
+    },
+   
+]

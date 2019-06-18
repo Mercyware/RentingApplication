@@ -1,0 +1,85 @@
+﻿@using System.Collections
+@using Renting.Interface
+@{
+    var equipmentsInSession = (IList<IEquipmentModel>) Session["Equipment"];
+    var equipmentCount = 0;
+    if (equipmentsInSession != null)
+    {
+        equipmentCount = equipmentsInSession.Count();
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title -Rentos :: Online Construction Equipment Rental</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+
+
+<section id="navigation" class="mb-0">
+    <nav class="navbar navbar-expand-lg navbar-dark  bg-dark-blue">
+        <div class="container">
+            <a class="navbar-brand" href="/"> Rentos</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarNavDropdown" class="navbar-collapse collapse">
+
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a href="/">
+                            <button class="btn btn-xs btn-link" style="font-size: 18px; color:#FFF">
+                               Home 
+                            </button>
+                            
+                        </a>
+                    </li>
+
+                    
+
+
+                    <li class="nav-item">
+                        <a href="/Equipment/Cart">
+                            <button class="btn btn-xs btn-link" style="font-size: 25px;">
+                                <i class="fa fa-shopping-cart" style="color: #FFF"></i>
+                            </button>
+                            <span class="badge badge-notify" style="font-size: 15px;">@equipmentCount</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+</section>
+
+
+@RenderBody()
+
+
+<!-- Footer -->
+<footer>
+    <div class="container-fluid mx-0 bg-dark-blue text-white">
+        <div class="row">
+            <div class="col-lg-12 col-md-10 mx-auto">
+
+                <p class="copyright text-white text-right">Copyright &copy; 2019 Olaitan M. Adeboye</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+</body>
+</html>

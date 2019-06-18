@@ -1,0 +1,110 @@
+﻿@model  Renting.Interface.IEquipmentCartViewModel
+@{
+    ViewBag.Title = "Equipment Cart";
+    var price = 0;
+    var totalPrice = 0;
+}
+<section id="display-header">
+    <h3 class="text-center my-2"><i class="fa fa-shopping-cart"></i> Customer Cart</h3>
+    <hr/>
+</section>
+
+
+<section id="jobs">
+    <div class="container">
+        @if (!string.IsNullOrEmpty(ViewBag.Message))
+        {
+            <div class="alert alert-success">
+                <i class="fa fa-information"></i> @ViewBag.Message</div>
+        }
+
+        @if (Model.Equipments.Any())
+        {
+            <div class="row mb-4">
+
+                @foreach (var equipment in Model.Equipments)
+                {
+                    price = @Model.GetEquipmentPrice(equipment.EquipmentType, equipment.DaysOfHire);
+
+                    totalPrice += price;
+
+                    <div class="col-12 my-3">
+
+                        <div class="card">
+                            <div class="card-body">
+                                @using (Html.BeginForm("RemoveFromCart", "Equipment", FormMethod.Post))
+                                {
+                                    <input value="@equipment.EquipmentID" name="equipmentID" type="hidden"/>
+
+                                    <h4 class="text-dark-blue">@equipment.EquipmentName</h4>
+
+                                    <p class="mb-1 text-black">
+                                        <span class="fa fa-building "></span>
+
+                                        @if (equipment.EquipmentType == "H")
+                                        {
+                                            <span>Heavy Equipment</span>
+                                        }
+                                        else if (equipment.EquipmentType == "R")
+                                        {
+                                            <span>Regular Equipment</span>
+                                        }
+                                        else if (equipment.EquipmentType == "S")
+
+                                        {
+                                            <span>Specialized Equipment</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Unspecified Equipment Type</span>
+                                        }
+                                    </p>
+
+
+                                    <p class="mb-1 text-black">
+                                        <span class="fa fa-money "></span> :€ @String.Format("{0:N2}", price)
+                                    </p>
+
+                                    <div class="form-row">
+
+
+                                        <div class=" col-md-12">
+                                            <button type="submit" class="btn btn-block btn-md btn-danger">
+                                                <span class="fa fa-trash"></span> Remove from Cart
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+
+                    </div>
+                }
+
+
+                @using (Html.BeginForm("DownloadInvoice", "Equipment", FormMethod.Post))
+                {
+                    <div class="form-row">
+
+
+                        <div class=" col-md-12">
+                            <button type="submit" class="btn btn-block btn-md btn-success">
+                                <span class="fa fa-download"></span> Download Invoice
+                            </button>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger"><span class="fa fa-exclamation-circle"></span> No equipment found in you cart, <a href="/">Click to Get Equipments</a></div>
+        }
+
+
+
+    </div>
+
+</section>
