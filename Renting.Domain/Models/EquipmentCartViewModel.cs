@@ -7,6 +7,7 @@ namespace Renting.Domain.Models
     {
         public IEnumerable<IEquipmentModel> Equipments { get; set; }
 
+        public string ProcessingMessage { get; set; }
 
         public int GetEquipmentPrice(string equipmentType, int days)
         {
@@ -52,5 +53,6 @@ namespace Renting.Domain.Models
 
             return price;
         }
+
     }
 }

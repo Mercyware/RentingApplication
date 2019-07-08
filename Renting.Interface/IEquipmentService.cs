@@ -27,7 +27,7 @@ namespace Renting.Interface
         /// Gets the equipment cart model.
         /// </summary>
         /// <returns></returns>
-        IEquipmentCartViewModel GetEquipmentCartModel();
+        IEquipmentCartViewModel GetEquipmentCartModel(string message);
 
         /// <summary>
         /// Searches the equipment.

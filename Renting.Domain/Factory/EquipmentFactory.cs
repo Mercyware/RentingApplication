@@ -36,9 +36,10 @@ namespace Renting.Domain.Factory
         /// Creates the equipment cart view.
         /// </summary>
         /// <param name="equipments">The equipments.</param>
+        /// <param name="message">The message.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">equipments</exception>
-        public IEquipmentCartViewModel CreateEquipmentCartView(IEnumerable<IEquipmentModel> equipments)
+        public IEquipmentCartViewModel CreateEquipmentCartView(IEnumerable<IEquipmentModel> equipments, string message)
         {
             if (equipments == null)
             {
@@ -48,7 +49,9 @@ namespace Renting.Domain.Factory
             //Generate the view data
             var viewModel = new EquipmentCartViewModel
             {
-                Equipments = equipments
+                Equipments = equipments,
+                ProcessingMessage = message
+                
             };
 
             return viewModel;

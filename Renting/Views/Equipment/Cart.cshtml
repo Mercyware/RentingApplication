@@ -12,10 +12,10 @@
 
 <section id="jobs">
     <div class="container">
-        @if (!string.IsNullOrEmpty(ViewBag.Message))
+        @if (!string.IsNullOrEmpty(Model.ProcessingMessage))
         {
             <div class="alert alert-success">
-                <i class="fa fa-information"></i> @ViewBag.Message</div>
+                <i class="fa fa-information"></i> @Model.ProcessingMessage</div>
         }
 
         @if (Model.Equipments.Any())
@@ -81,6 +81,16 @@
 
                     </div>
                 }
+
+                <div class="container">
+                    <div class="row text-right ">
+                        <p>
+                            Total Price <b>:€ @String.Format("{0:N2}", totalPrice)</b>
+                        </p>
+
+                    </div>
+
+                </div>
 
 
                 @using (Html.BeginForm("DownloadInvoice", "Equipment", FormMethod.Post))

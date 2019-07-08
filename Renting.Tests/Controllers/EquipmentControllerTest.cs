@@ -129,11 +129,12 @@ namespace Renting.Tests.Controllers
         public void Cart_Get_Method_Calls_GetEquipmentCartModel_From_EquipmentService_Successfully()
         {
             //setup
-            this.equipmentService.Expect(p => p.GetEquipmentCartModel()).IgnoreArguments()
+            var message = "test message";
+            this.equipmentService.Expect(p => p.GetEquipmentCartModel(message)).IgnoreArguments()
                 .Return(new EquipmentCartViewModel());
 
             //Act
-            this.equipmentController.Cart();
+            this.equipmentController.Cart(message);
 
 
             //Assert
@@ -144,11 +145,12 @@ namespace Renting.Tests.Controllers
         public void Cart_Get_Should_Return_Cart_View_Successfully()
         {
             // Arrange
+            var message = "test message";
             var viewModel = new EquipmentCartViewModel();
-            this.equipmentService.Expect(p => p.GetEquipmentCartModel()).IgnoreArguments().Return(viewModel);
+            this.equipmentService.Expect(p => p.GetEquipmentCartModel(message)).IgnoreArguments().Return(viewModel);
 
             //Act
-            var result = (ViewResult) equipmentController.Cart();
+            var result = (ViewResult) equipmentController.Cart(message);
 
             // Assert
             Assert.AreEqual(result.ViewName, "Cart");

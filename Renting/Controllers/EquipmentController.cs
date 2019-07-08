@@ -26,13 +26,21 @@ namespace Renting.Controllers
         /// <param name="equipmentModel">The equipment model.</param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddToCart(EquipmentModel equipmentModel)
         {
+            if (!ModelState.IsValid)
+            {
+                var message = "An Error has occured in your input";
+                return RedirectToAction("Index", "Home", new {message});
+            }
+
             if (equipmentModel == null) throw new ArgumentNullException(nameof(equipmentModel));
             this._equipmentService.AddToCart(equipmentModel);
             ViewBag.Message = "Selected Equipment has been added to Cart";
             return RedirectToAction("Index", "Home");
         }
+
         /// <summary>
         /// Removes from cart.
         /// </summary>
@@ -53,9 +61,9 @@ namespace Renting.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Cart()
+        public ActionResult Cart(string message)
         {
-            var model = this._equipmentService.GetEquipmentCartModel();
+            var model = this._equipmentService.GetEquipmentCartModel(message);
             return View("Cart", model);
         }
 
@@ -76,7 +84,6 @@ namespace Renting.Controllers
 
             ViewBag.title = title;
             return View("SearchEquipment", equipments);
-
         }
 
         /// <summary>
@@ -86,7 +93,6 @@ namespace Renting.Controllers
         [HttpPost]
         public FileStreamResult DownloadInvoice()
         {
-
             var invoice = this._equipmentService.GenerateInvoice();
 
             return File(invoice, "text/plain", "CustomerInvoice.txt");

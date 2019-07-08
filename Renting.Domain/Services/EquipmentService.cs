@@ -57,10 +57,10 @@ namespace Renting.Domain.Services
         /// Gets the equipment cart model.
         /// </summary>
         /// <returns></returns>
-        public IEquipmentCartViewModel GetEquipmentCartModel()
+        public IEquipmentCartViewModel GetEquipmentCartModel(string message)
         {
             var cart = this.GetCartItems();
-            var model = this._equipmentFactory.CreateEquipmentCartView(cart);
+            var model = this._equipmentFactory.CreateEquipmentCartView(cart,message);
             return model;
         }
 
@@ -70,18 +70,18 @@ namespace Renting.Domain.Services
         /// <param name="equipment">The equipment.</param>
         public void AddToCart(IEquipmentModel equipment)
         {
-            var equipmentList = this.GetCartItems();
+            var equipmentListInCartItems = this.GetCartItems();
+           
 
-
-            if (equipmentList == null)
+            if (equipmentListInCartItems == null)
             {
-                equipmentList.Add(equipment);
-                HttpContext.Current.Session["Equipment"] = equipmentList;
+                equipmentListInCartItems.Add(equipment);
+                HttpContext.Current.Session["Equipment"] = equipmentListInCartItems;
             }
             else
             {
-                equipmentList.Add(equipment);
-                HttpContext.Current.Session["Equipment"] = equipmentList;
+                equipmentListInCartItems.Add(equipment);
+                HttpContext.Current.Session["Equipment"] = equipmentListInCartItems;
             }
         }
 

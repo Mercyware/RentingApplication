@@ -15,7 +15,8 @@ namespace Renting.Interface.Factory
         /// Creates the equipment cart view.
         /// </summary>
         /// <param name="equipments">The equipments.</param>
+        /// <param name="message">The message.</param>
         /// <returns></returns>
-        IEquipmentCartViewModel CreateEquipmentCartView(IEnumerable<IEquipmentModel> equipments);
+        IEquipmentCartViewModel CreateEquipmentCartView(IEnumerable<IEquipmentModel> equipments, string message);
     }
 }
