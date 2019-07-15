@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using log4net;
 using Renting.Interface;
 using Renting.Repository.Models;
 
@@ -13,11 +14,12 @@ namespace Renting.Controllers
     public class EquipmentController : Controller
     {
         private readonly IEquipmentService _equipmentService;
-
+       
 
         public EquipmentController(IEquipmentService equipmentService)
         {
             this._equipmentService = equipmentService;
+          
         }
 
         /// <summary>
@@ -35,9 +37,13 @@ namespace Renting.Controllers
                 return RedirectToAction("Index", "Home", new {message});
             }
 
-            if (equipmentModel == null) throw new ArgumentNullException(nameof(equipmentModel));
-            this._equipmentService.AddToCart(equipmentModel);
-            ViewBag.Message = "Selected Equipment has been added to Cart";
+
+            if (equipmentModel == null)
+            {
+                throw new ArgumentNullException(nameof(equipmentModel));
+            }
+
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -50,9 +56,15 @@ namespace Renting.Controllers
         [HttpPost]
         public ActionResult RemoveFromCart(int equipmentId)
         {
-            if (equipmentId <= 0) throw new ArgumentOutOfRangeException(nameof(equipmentId));
+            if (equipmentId <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(equipmentId));
+            }
+
+
             this._equipmentService.RemoveFromCart(equipmentId);
             ViewBag.Message = "Selected Equipment Deleted From Cart";
+
             return RedirectToAction("Cart", "Equipment");
         }
 

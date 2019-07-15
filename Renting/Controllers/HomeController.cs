@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using log4net;
+using Renting.Domain.Services;
 using Renting.Interface;
 using Renting.Repository.Models;
 
@@ -24,6 +26,7 @@ namespace Renting.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+
             var equipments = this._equipmentService.GetEquipmentViewModel();
 
             return View("Index", equipments);
